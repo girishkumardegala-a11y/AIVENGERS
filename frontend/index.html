@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RADIX — JD Analytics Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="scanlines" aria-hidden="true"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">▧</span>
+    <span class="brand-name">AIVENGERS</span>
+  </div>
+  <div class="brand-tag">JD ANALYTICS AGENT · TALENT MATCH PLATFORM</div>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT: INTAKE -->
+  <section class="panel intake" id="intake-panel">
+    <div class="panel-label"><span class="idx">01</span> INTAKE</div>
+    <p class="panel-desc">Feed a job description in. The agent reads it, isolates every requirement, and resolves each one to a RADIX signal channel.</p>
+
+    <div id="dropzone" class="dropzone">
+      <div class="dropzone-inner">
+        <div class="slot-icon">⌁</div>
+        <p class="slot-title">Drop JD file here</p>
+        <p class="slot-sub">.pdf or .docx · max 10MB</p>
+        <label class="browse-btn">
+          Browse file
+          <input type="file" id="file-input" accept=".pdf,.docx" hidden />
+        </label>
+      </div>
+    </div>
+
+    <div id="file-chip" class="file-chip hidden">
+      <span class="file-chip-icon">▤</span>
+      <span id="file-chip-name" class="file-chip-name"></span>
+      <button id="file-chip-remove" class="file-chip-remove" aria-label="Remove file">✕</button>
+    </div>
+
+    <button id="scan-btn" class="scan-btn" disabled>
+      <span class="scan-btn-label">Scan document</span>
+    </button>
+
+    <div id="status-line" class="status-line"></div>
+  </section>
+
+  <!-- RIGHT: OUTPUT -->
+  <section class="panel output" id="output-panel">
+    <div class="panel-label"><span class="idx">02</span> SIGNAL READOUT</div>
+
+    <div id="empty-state" class="empty-state">
+      <div class="empty-grid">
+        <div class="empty-tile" style="--d:0"></div>
+        <div class="empty-tile" style="--d:1"></div>
+        <div class="empty-tile" style="--d:2"></div>
+        <div class="empty-tile" style="--d:3"></div>
+        <div class="empty-tile" style="--d:4"></div>
+        <div class="empty-tile" style="--d:5"></div>
+      </div>
+      <p>No document scanned yet. Results will populate the 12 RADIX channels here.</p>
+    </div>
+
+    <div id="results" class="results hidden">
+
+      <div class="job-card" id="job-card"></div>
+
+      <div class="category-grid" id="category-grid"></div>
+
+      <div class="skills-section">
+        <div class="skills-header">
+          <h3>Extracted skills</h3>
+          <div class="skills-actions">
+            <button id="download-json-btn" class="ghost-btn">Download JSON</button>
+            <button id="toggle-raw-btn" class="ghost-btn">View raw JSON</button>
+          </div>
+        </div>
+        <div id="skills-list" class="skills-list"></div>
+        <pre id="raw-json" class="raw-json hidden"></pre>
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">Built for a hackathon on the RADIX skill taxonomy · Powered by Claude</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
