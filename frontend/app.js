@@ -23,12 +23,16 @@ const JOB_FIELDS = [
 
 let selectedFile = null;
 let lastResult = null;
+let currentMode = "file";
 
 const dropzone = document.getElementById("dropzone");
 const fileInput = document.getElementById("file-input");
 const fileChip = document.getElementById("file-chip");
 const fileChipName = document.getElementById("file-chip-name");
 const fileChipRemove = document.getElementById("file-chip-remove");
+const modeButtons = document.querySelectorAll(".mode-btn");
+const textEntry = document.getElementById("text-entry");
+const jdTextInput = document.getElementById("jd-text-input");
 const scanBtn = document.getElementById("scan-btn");
 const statusLine = document.getElementById("status-line");
 const emptyState = document.getElementById("empty-state");
@@ -56,6 +60,37 @@ fileChipRemove.addEventListener("click", (e) => {
   e.stopPropagation();
   clearFile();
 });
+
+modeButtons.forEach((button) => {
+  button.addEventListener("click", () => setMode(button.dataset.mode));
+});
+
+jdTextInput.addEventListener("input", () => {
+  if (currentMode === "text") {
+    scanBtn.disabled = jdTextInput.value.trim().length < 30;
+  }
+});
+
+function setMode(mode) {
+  currentMode = mode;
+  const isTextMode = mode === "text";
+
+  modeButtons.forEach((button) => {
+    const active = button.dataset.mode === mode;
+    button.classList.toggle("active", active);
+  });
+
+  dropzone.classList.toggle("hidden", isTextMode);
+  textEntry.classList.toggle("hidden", !isTextMode);
+
+  if (isTextMode) {
+    scanBtn.disabled = jdTextInput.value.trim().length < 30;
+    setStatus("Paste a full job description to analyze.");
+  } else {
+    scanBtn.disabled = !selectedFile;
+    setStatus(selectedFile ? "Ready to scan selected file." : "");
+  }
+}
 
 function setFile(file) {
   const okType = /\.(pdf|docx)$/i.test(file.name);

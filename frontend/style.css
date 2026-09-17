@@ -126,6 +126,31 @@ button, input { font-family: inherit; }
 }
 
 /* ---------- INTAKE ---------- */
+.mode-switch {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.mode-btn {
+  flex: 1;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--slate);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 8px 10px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.mode-btn.active {
+  background: rgba(111, 231, 221, 0.06);
+  border-color: var(--cyan-dim);
+  color: var(--cyan);
+}
+
 .dropzone {
   border: 1.5px dashed var(--line);
   border-radius: 4px;
@@ -168,6 +193,38 @@ button, input { font-family: inherit; }
   transition: background 0.15s ease, color 0.15s ease;
 }
 .browse-btn:hover { background: var(--cyan); color: var(--ink); }
+
+.text-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+.textarea-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--slate);
+  text-transform: uppercase;
+}
+#jd-text-input {
+  width: 100%;
+  min-height: 190px;
+  resize: vertical;
+  background: rgba(16, 42, 69, 0.8);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 14px 16px;
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+}
+#jd-text-input:focus {
+  outline: none;
+  border-color: var(--cyan-dim);
+  box-shadow: 0 0 0 1px rgba(111, 231, 221, 0.2);
+}
 
 .file-chip {
   margin-top: 16px;

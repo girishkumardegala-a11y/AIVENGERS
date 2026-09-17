@@ -27,6 +27,11 @@
     <div class="panel-label"><span class="idx">01</span> INTAKE</div>
     <p class="panel-desc">Feed a job description in. The agent reads it, isolates every requirement, and resolves each one to a RADIX signal channel.</p>
 
+    <div class="mode-switch" aria-label="Input mode selector">
+      <button type="button" class="mode-btn active" data-mode="file">Upload file</button>
+      <button type="button" class="mode-btn" data-mode="text">Paste text</button>
+    </div>
+
     <div id="dropzone" class="dropzone">
       <div class="dropzone-inner">
         <div class="slot-icon">⌁</div>
@@ -37,6 +42,11 @@
           <input type="file" id="file-input" accept=".pdf,.docx" hidden />
         </label>
       </div>
+    </div>
+
+    <div id="text-entry" class="text-entry hidden">
+      <label class="textarea-label" for="jd-text-input">Paste the job description</label>
+      <textarea id="jd-text-input" rows="12" placeholder="Paste or type the full job description here..."></textarea>
     </div>
 
     <div id="file-chip" class="file-chip hidden">
